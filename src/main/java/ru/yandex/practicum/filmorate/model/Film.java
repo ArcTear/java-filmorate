@@ -1,18 +1,12 @@
 package ru.yandex.practicum.filmorate.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
-@Entity
 public class Film {
-    @Id
-    @GeneratedValue
     private int id;
     @NotBlank(message = "Введено пустое название фильма.")
     private String name;

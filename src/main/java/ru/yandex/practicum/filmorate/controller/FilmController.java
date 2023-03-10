@@ -1,12 +1,12 @@
 package ru.yandex.practicum.filmorate.controller;
 
 
-import jakarta.validation.Valid;
-import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -49,7 +49,7 @@ public class FilmController {
             log.debug("Обновлён фильм с id - {}", film.getId());
         } else {
             log.debug("Фильма с id {} нет под контролем", film.getId());
-            throw new jakarta.validation.ValidationException();
+            throw new ValidationException();
         }
 
         return film;

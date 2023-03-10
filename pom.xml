@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.9</version>
+        <relativePath/>
     </parent>
     <groupId>ru.yandex.practicum</groupId>
     <artifactId>filmorate</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.4.3</version>
     <name>filmorate</name>
     <description>App to rate films</description>
     <properties>
@@ -56,6 +56,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
             </plugin>
         </plugins>
     </build>
