@@ -26,6 +26,7 @@ public class FilmController {
     @PostMapping
     public Film create(@RequestBody @Valid Film film) throws ValidationException {
         if (isFilmNotValid(film)) {
+            log.debug("Дата выхода фильма некорректна.");
             throw new ValidationException();
         }
 
@@ -42,6 +43,7 @@ public class FilmController {
     @PutMapping
     Film update(@RequestBody @Valid Film film) throws ValidationException {
         if (isFilmNotValid(film)) {
+            log.debug("Дата выхода фильма некорректна.");
             throw new ValidationException();
         }
         if (films.containsKey(film.getId())) {
@@ -54,7 +56,8 @@ public class FilmController {
 
         return film;
     }
-    private int generateId(@Valid Film film){
+
+    private int generateId(@Valid Film film) {
         int id = film.getId() == 0 ? 1 : film.getId();
         while (films.containsKey(id)) {
             id++;
