@@ -45,10 +45,9 @@ public class UserController {
             users.put(user.getId(), user);
             log.debug("Обновлен пользователь с id: {}", user.getId());
         } else {
-            log.debug("Пользователя с id {} нет под контролем", user.getId());
+            log.error("Пользователя с id {} нет под контролем", user.getId());
             throw new ValidationException();
         }
-
 
         users.put(user.getId(), user);
 
