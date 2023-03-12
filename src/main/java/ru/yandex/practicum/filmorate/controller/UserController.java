@@ -26,14 +26,9 @@ public class UserController {
 
     @PostMapping
     public User create(@RequestBody @Valid User user) throws ValidationException {
-        if (!isUserValid(user)) {
-            throw new ValidationException();
-        }
         if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
-
-        user.setId(generateId(user));
 
         log.debug("Сохранён пользователь: {}", user.getId());
 
@@ -43,9 +38,6 @@ public class UserController {
 
     @PutMapping
     User update(@RequestBody @Valid User user) throws ValidationException {
-        if (!isUserValid(user)) {
-            throw new ValidationException();
-        }
         if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
@@ -61,17 +53,5 @@ public class UserController {
         users.put(user.getId(), user);
 
         return user;
-    }
-
-    private int generateId(@Valid User user) {
-        int id = user.getId() == 0 ? 1 : user.getId();
-        while (users.containsKey(id)) {
-            id++;
-        }
-        return id;
-    }
-
-    private boolean isUserValid(@Valid User user) {
-        return !user.getLogin().contains(" ");
     }
 }
