@@ -30,6 +30,8 @@ public class UserController {
             user.setName(user.getLogin());
         }
 
+        user.setId(generateId(user));
+
         log.debug("Сохранён пользователь: {}", user.getId());
 
         users.put(user.getId(), user);
@@ -52,5 +54,13 @@ public class UserController {
         users.put(user.getId(), user);
 
         return user;
+    }
+
+    private int generateId(@Valid User user) {
+        int id = user.getId() == 0 ? 1 : user.getId();
+        while (users.containsKey(id)) {
+            id++;
+        }
+        return id;
     }
 }
